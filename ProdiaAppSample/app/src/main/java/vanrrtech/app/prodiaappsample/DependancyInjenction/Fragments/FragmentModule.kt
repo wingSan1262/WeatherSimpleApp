@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.prodiaappsample.BaseClass.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.BaseFragment
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
 import vanrrtech.app.prodiaappsample.features.login.LoginVM

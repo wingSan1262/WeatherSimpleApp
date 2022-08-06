@@ -5,12 +5,12 @@ import dagger.Module
 import dagger.Provides
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewBinderFactory.ViewBinderFactory
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
-import vanrrtech.app.prodiaappsample.Repository.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
-import vanrrtech.app.prodiaappsample.Repository.SQDb.weather_data.WeatherDataDao
-import vanrrtech.app.prodiaappsample.Repository.SQDb.weather_data.WeatherDataDb
-import vanrrtech.app.prodiaappsample.Repository.remote_repository.WeatherApiRetrofitClient
-import vanrrtech.app.prodiaappsample.UtilServices.location.LocationService
-import vanrrtech.app.prodiaappsample.UtilServices.shared_preference.SharedPreferenceService
+import vanrrtech.app.prodiaappsample.data.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
+import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
+import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDb
+import vanrrtech.app.prodiaappsample.data.remote_repository.WeatherApiRetrofitClient
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
 
 @Module
 class AppModule(val application: Application) {

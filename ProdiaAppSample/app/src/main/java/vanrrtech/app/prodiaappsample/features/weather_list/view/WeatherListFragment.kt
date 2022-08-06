@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import vanrrtech.app.prodiaappsample.BaseClass.BaseFragment
-import vanrrtech.app.prodiaappsample.R
-import vanrrtech.app.prodiaappsample.UtilServices.location.LocationService
+import vanrrtech.app.prodiaappsample.base_components.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
 import vanrrtech.app.prodiaappsample.features.weather_list.view_model.WeatherListVM
 import javax.inject.Inject

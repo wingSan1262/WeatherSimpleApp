@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import vanrrtech.app.prodiaappsample.R
-import vanrrtech.app.prodiaappsample.Repository.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
-import vanrrtech.app.prodiaappsample.Repository.data_model.daily_data_wheather.WeatherItemData
-import vanrrtech.app.prodiaappsample.Repository.data_model.daily_data_wheather.DailyWheatherItemData
-import vanrrtech.app.prodiaappsample.UtilServices.Imageloader
-import vanrrtech.app.prodiaappsample.UtilServices.UnixDateConverter
+import vanrrtech.app.prodiaappsample.data.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
+import vanrrtech.app.prodiaappsample.domain.data_model.daily_data_wheather.WeatherItemData
+import vanrrtech.app.prodiaappsample.domain.data_model.daily_data_wheather.DailyWheatherItemData
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.UnixDateConverter
 import vanrrtech.app.prodiaappsample.databinding.WheatherItemRvBinding
 
 class WeatherListAdapter(val context: Context, val dateConverter: UnixDateConverter, val imageloader: Imageloader) : RecyclerView.Adapter<WeatherListAdapter.WeatherListAdapterHolder>() {

@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 
 import androidx.lifecycle.ViewModelProvider
-import vanrrtech.app.prodiaappsample.Repository.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
-import vanrrtech.app.prodiaappsample.UtilServices.location.LocationService
+import vanrrtech.app.prodiaappsample.data.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 import vanrrtech.app.prodiaappsample.features.login.LoginVM
 import vanrrtech.app.prodiaappsample.features.weather_list.view_model.WeatherListVM
 

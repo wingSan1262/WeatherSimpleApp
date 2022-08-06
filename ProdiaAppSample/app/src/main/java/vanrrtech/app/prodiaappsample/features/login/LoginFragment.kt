@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
-import vanrrtech.app.prodiaappsample.BaseClass.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.BaseFragment
 import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding
 
 class LoginFragment : BaseFragment<LoginActivityBinding, LoginVM>() {

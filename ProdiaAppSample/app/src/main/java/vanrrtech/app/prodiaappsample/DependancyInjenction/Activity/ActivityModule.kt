@@ -7,23 +7,19 @@ import android.view.LayoutInflater
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.prodiaappsample.BaseClass.BaseActivity
-import vanrrtech.app.prodiaappsample.TopActivity
-import vanrrtech.app.prodiaappsample.UtilServices.Imageloader
-import vanrrtech.app.prodiaappsample.UtilServices.KeyboardDismisser
-import vanrrtech.app.prodiaappsample.UtilServices.LoginHandler.LoginHandlerService
-import vanrrtech.app.prodiaappsample.UtilServices.UnixDateConverter
-import vanrrtech.app.prodiaappsample.UtilServices.screen_navigator.ScreenNavigator
-import vanrrtech.app.prodiaappsample.UtilServices.shared_preference.SharedPreferenceService
-import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
-import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding
-import vanrrtech.app.prodiaappsample.dialog_fragments.DialogFragmentFactory
-import vanrrtech.app.prodiaappsample.dialog_fragments.dialog_navigator.DialogFragmentNavigator
-import vanrrtech.app.prodiaappsample.dialog_fragments.dialog_navigator.DialogStringBundleFactory
+import vanrrtech.app.prodiaappsample.base_components.BaseActivity
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.KeyboardDismisser
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.UnixDateConverter
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.screen_navigator.ScreenNavigator
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
+import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.DialogFragmentFactory
+import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogFragmentNavigator
+import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogStringBundleFactory
 import vanrrtech.app.prodiaappsample.features.weather_list.view.WeatherListAdapter
 
 @Module

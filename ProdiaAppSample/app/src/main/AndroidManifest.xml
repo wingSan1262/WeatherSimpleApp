@@ -14,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProdiaAppSample">
-        <activity android:name=".UtilServices.location.ActivityLocationPermissionRequest"></activity>
-        <activity android:name=".BaseClass.BaseActivity" />
-        <activity android:name=".TopActivity">
+        <activity android:name="vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest"></activity>
+        <activity android:name=".base_components.BaseActivity" />
+        <activity android:name=".features.home.TopActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

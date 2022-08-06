@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import vanrrtech.app.prodiaappsample.TopActivity
+import vanrrtech.app.prodiaappsample.features.home.TopActivity
 import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
 import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding
 import vanrrtech.app.prodiaappsample.databinding.TopActivityLayoutBinding

@@ -1,16 +1,14 @@
 package vanrrtech.app.prodiaappsample.features.weather_list.view_model
 
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
-import vanrrtech.app.prodiaappsample.Repository.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
-import vanrrtech.app.prodiaappsample.Repository.data_model.WeatherData
-import vanrrtech.app.prodiaappsample.Repository.data_model.daily_data_wheather.DailyWheatherItemData
-import vanrrtech.app.prodiaappsample.UtilServices.location.LocationService
+import vanrrtech.app.prodiaappsample.data.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
+import vanrrtech.app.prodiaappsample.domain.data_model.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.daily_data_wheather.DailyWheatherItemData
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 
 class WeatherListVM(val myWeatherInteractor: GetMyWeatherInteractor
 , val locationService: LocationService) : ViewModel() {
