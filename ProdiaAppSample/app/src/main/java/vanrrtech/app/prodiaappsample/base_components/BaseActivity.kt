@@ -22,7 +22,6 @@ import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.KeyboardDismisser
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest
-import vanrrtech.app.prodiaappsample.base_components.UtilServices.screen_navigator.ScreenNavigator
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.snack_bar_handler.SnackBarHandler
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogFragmentNavigator
 import javax.inject.Inject
@@ -37,7 +36,6 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivit
     @Inject lateinit var loginHandler : LoginHandlerService
     @Inject lateinit var imageLoader: Imageloader
     @Inject lateinit var dialogFragmentNavigator: DialogFragmentNavigator
-    @Inject lateinit var screenNavigator: ScreenNavigator
     @Inject lateinit var viewBinderFactory: ViewBinderFactory
     @Inject lateinit var viewModelFactory: VmFactory
     @Inject lateinit var keyboardDismisser: KeyboardDismisser
@@ -56,16 +54,7 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivit
     val activityComponent : ActivityComponent by lazy {
         appComponent.newActivityComponent(ActivityModule(this, this))
     }
-
-    fun requestPermission(){
-        ActivityLocationPermissionRequest.requestLocation(this) }
-    fun openAppSetting(){
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        val uri: Uri = Uri.fromParts("package", packageName, null)
-        intent.data = uri
-        startActivity(intent)
-    }
+    fun requestPermission(){ ActivityLocationPermissionRequest.requestLocation(this) }
     fun dismissKey(){ keyboardDismisser.dismissSoftKey() }
 
     override fun onCreate(savedInstanceState: Bundle?) {

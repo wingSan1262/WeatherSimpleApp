@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_700"
-        tools:context=".features.weather_list.view.WeatherListActivity">
+        tools:context=".features.wheather_report.weather_list.view.WeatherListActivity">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"

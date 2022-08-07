@@ -15,12 +15,11 @@ import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.KeyboardDismisser
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.UnixDateConverter
-import vanrrtech.app.prodiaappsample.base_components.UtilServices.screen_navigator.ScreenNavigator
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.DialogFragmentFactory
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogFragmentNavigator
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogStringBundleFactory
-import vanrrtech.app.prodiaappsample.features.weather_list.view.WeatherListAdapter
+import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListAdapter
 
 @Module
 class ActivityModule (val activity: AppCompatActivity, val context : Context) {
@@ -86,10 +85,6 @@ class ActivityModule (val activity: AppCompatActivity, val context : Context) {
             dialogFactory,
             bundleFactory
         )
-
-    @Provides
-    fun getScreenNavigator(fm: FragmentManager, activity: AppCompatActivity) =
-        ScreenNavigator(fm, activity)
 
     @Provides
     @ActivityScope

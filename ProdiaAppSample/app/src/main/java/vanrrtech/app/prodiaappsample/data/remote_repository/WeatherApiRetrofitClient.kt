@@ -4,7 +4,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import vanrrtech.app.prodiaappsample.domain.data_model.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.MyWeatherParam
+import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
 
 class WeatherApiRetrofitClient {
 
@@ -26,8 +27,12 @@ class WeatherApiRetrofitClient {
             .create(WeatherApiService::class.java)
     }
 
-    suspend fun getWeatherQueryApi(lat : String, lon : String, exclued : String, apikey : String): WeatherData {
-        return userService.getWeatherData(lat, lon, exclued, apikey)
+    suspend fun getWeatherQueryApi(parameter: MyWeatherParam): WeatherData {
+        return userService.getWeatherData(
+            parameter.lat,
+            parameter.lon,
+            parameter.exclude,
+            parameter.apikey)
     }
 
 

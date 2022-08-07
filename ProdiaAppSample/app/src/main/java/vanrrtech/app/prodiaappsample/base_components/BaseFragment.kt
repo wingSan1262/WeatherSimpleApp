@@ -12,8 +12,9 @@ import androidx.viewbinding.ViewBinding
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.FragmentModule
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
-import vanrrtech.app.prodiaappsample.features.home.TopActivity
+import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopActivity
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest
+import vanrrtech.app.prodiaappsample.base_components.extensions.openAppSetting
 import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
@@ -27,7 +28,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     val dialogFragmentNavigator by lazy { hostActivity.dialogFragmentNavigator }
-    val screenNavigator by lazy { hostActivity.screenNavigator }
     val loginHandler by lazy { hostActivity.loginHandler }
     val imageLoader by lazy { hostActivity.imageLoader }
     val snackBarHandler by lazy { hostActivity.snackBarHandler }
@@ -47,9 +47,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
             .get(modelClass) as VM
     }
 
-    fun finish(){ screenNavigator.back() }
     fun requestPermission(){ ActivityLocationPermissionRequest.requestLocation(this) }
-    fun openAppSetting(){hostActivity.openAppSetting()}
     fun dismissKey(){ hostActivity.dismissKey()}
 
 

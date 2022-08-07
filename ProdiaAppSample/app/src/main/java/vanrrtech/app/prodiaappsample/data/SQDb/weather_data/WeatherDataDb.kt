@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import vanrrtech.app.prodiaappsample.domain.data_model.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
 
 @Database(entities = [WeatherData::class], exportSchema = false, version = 1)
 @TypeConverters(CurrentWeatherTypeConverter::class, DailyWeatherListTypeConverter::class)

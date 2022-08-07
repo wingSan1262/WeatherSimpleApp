@@ -5,8 +5,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
-import vanrrtech.app.prodiaappsample.domain.data_model.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
 import vanrrtech.app.prodiaappsample.data.remote_repository.WeatherApiRetrofitClient
+import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.MyWeatherParam
 
 class GetMyWeatherInteractor (private val myApi : WeatherApiRetrofitClient, private val dataDao: WeatherDataDao) {
 
@@ -22,13 +23,12 @@ class GetMyWeatherInteractor (private val myApi : WeatherApiRetrofitClient, priv
     }
 
     suspend fun getWeatherDataSync(
-        param: Param,
+        param: MyWeatherParam,
         showError: (boolean:Boolean) -> Unit
     ): WeatherData? {
         var mWeatherData : WeatherData? = null
         try {
-            mWeatherData =  myApi.getWeatherQueryApi(param.lat, param.lon, param.exclude, param.apikey)
-
+            mWeatherData =  myApi.getWeatherQueryApi(param)
         } catch (e : Throwable){
             Log.e("Internet down", "error")
             mWeatherData = null

@@ -4,12 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import vanrrtech.app.prodiaappsample.features.home.TopActivity
+import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopActivity
 import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
 import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding
 import vanrrtech.app.prodiaappsample.databinding.TopActivityLayoutBinding
-import vanrrtech.app.prodiaappsample.features.login.LoginFragment
-import vanrrtech.app.prodiaappsample.features.weather_list.view.WeatherListFragment
+import vanrrtech.app.prodiaappsample.databinding.TopFragmentLayoutBinding
+import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopFragment
+import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginFragment
+import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListFragment
 
 class ViewBinderFactory() {
 
@@ -26,6 +28,12 @@ class ViewBinderFactory() {
             }
             WeatherListFragment::class.java -> {
                 (fragment as WeatherListFragment).viewBinding = ActivityWeatherListBinding.inflate(inflater,
+                    container,
+                    false
+                )
+            }
+            TopFragment::class.java -> {
+                (fragment as TopFragment).viewBinding = TopFragmentLayoutBinding.inflate(inflater,
                     container,
                     false
                 )

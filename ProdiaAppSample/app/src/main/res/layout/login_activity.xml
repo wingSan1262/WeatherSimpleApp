@@ -9,7 +9,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-        tools:context=".features.home.TopActivity"
+        tools:context=".features.wheather_report.home.TopActivity"
         android:background="@color/blue_500">
 
         <TextView

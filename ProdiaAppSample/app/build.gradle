@@ -90,6 +90,9 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.4.3'
     kapt "androidx.room:room-compiler:2.4.3"
 
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
+
     androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
@@ -99,7 +102,6 @@ dependencies {
     androidTestImplementation('com.adevinta.android:barista:4.2.0') {
         exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
     }
-
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 

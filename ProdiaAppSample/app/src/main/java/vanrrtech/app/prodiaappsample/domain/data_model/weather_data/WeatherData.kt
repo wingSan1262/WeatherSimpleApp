@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.domain.data_model
+package vanrrtech.app.prodiaappsample.domain.data_model.weather_data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

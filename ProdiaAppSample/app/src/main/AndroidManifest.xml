@@ -16,7 +16,7 @@
         android:theme="@style/Theme.ProdiaAppSample">
         <activity android:name="vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest"></activity>
         <activity android:name=".base_components.BaseActivity" />
-        <activity android:name=".features.home.TopActivity"
+        <activity android:name="vanrrtech.app.prodiaappsample.features.wheather_report.home.TopActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

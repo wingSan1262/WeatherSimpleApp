@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.features.weather_list.view
+package vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view
 
 import android.content.Context
 import android.view.LayoutInflater

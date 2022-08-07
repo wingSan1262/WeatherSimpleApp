@@ -1,9 +1,12 @@
-package vanrrtech.app.prodiaappsample.features.home
+package vanrrtech.app.prodiaappsample.features.wheather_report.home
 
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
+import vanrrtech.app.prodiaappsample.R
 import vanrrtech.app.prodiaappsample.base_components.BaseActivity
+import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
+import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
 import vanrrtech.app.prodiaappsample.databinding.TopActivityLayoutBinding
 
 class TopActivity : BaseActivity<TopActivityLayoutBinding, TopActivityViewModel>() {
@@ -14,25 +17,16 @@ class TopActivity : BaseActivity<TopActivityLayoutBinding, TopActivityViewModel>
         activityComponent.inject(this)
         initUi()
         super.onCreate(savedInstanceState)
-        if(loginHandler.obtainUserCredential().userName.isNotEmpty()){
-            showWeatherActivity()
-            return
+        supportFragmentManager.beginTransaction().apply {
+            add(viewBinding.fragmentContainer.id, TopFragment())
+            commit()
         }
-        showLogin()
+        // do nothing
     }
 
     fun initUi(){
         bindThisView(this, layoutInflater, null)
-
     }
 
-
-    fun showLogin(){
-        screenNavigator.startLogin()
-    }
-
-    fun showWeatherActivity(){
-        screenNavigator.startWeatherList()
-    }
 
 }

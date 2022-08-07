@@ -10,8 +10,8 @@ import dagger.Provides
 import vanrrtech.app.prodiaappsample.base_components.BaseFragment
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
-import vanrrtech.app.prodiaappsample.features.login.LoginVM
-import vanrrtech.app.prodiaappsample.features.weather_list.view_model.WeatherListVM
+import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginVM
+import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view_model.WeatherListVM
 
 @Module
 class FragmentModule (val fragment : Fragment) {

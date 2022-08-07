@@ -1,11 +1,14 @@
-package vanrrtech.app.prodiaappsample.features.login
+package vanrrtech.app.prodiaappsample.features.wheather_report.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
+import vanrrtech.app.prodiaappsample.R
 import vanrrtech.app.prodiaappsample.base_components.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
+import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
 import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding
 
 class LoginFragment : BaseFragment<LoginActivityBinding, LoginVM>() {
@@ -23,10 +26,15 @@ class LoginFragment : BaseFragment<LoginActivityBinding, LoginVM>() {
     ): View? {
         container?.let {
             bindThisView(this, layoutInflater, it)
-            initUi()
         }
-
         return viewBinding.root
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(!checkLoginStatus())
+            initUi()
     }
 
     fun initUi(){
@@ -54,5 +62,23 @@ class LoginFragment : BaseFragment<LoginActivityBinding, LoginVM>() {
         }
     }
 
-    fun showWeatherActivity(){ screenNavigator.loginToWeatherList() }
+    fun checkLoginStatus(): Boolean {
+        if(loginHandler.obtainUserCredential().userName.isNotEmpty()){
+            findNullableNavController()?.navigateSafe(
+                R.id.loginFragment_toWeatherList
+            )
+            return true
+        } else {
+            findNullableNavController()?.navigateSafe(
+                R.id.weatherList_loginFragment
+            )
+            return false
+        }
+    }
+
+    fun showWeatherActivity(){
+        findNullableNavController()?.navigateSafe(
+            R.id.loginFragment_toWeatherList
+        )
+    }
 }

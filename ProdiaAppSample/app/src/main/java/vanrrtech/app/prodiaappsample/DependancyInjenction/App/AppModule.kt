@@ -11,6 +11,10 @@ import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDb
 import vanrrtech.app.prodiaappsample.data.remote_repository.WeatherApiRetrofitClient
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
+import vanrrtech.app.prodiaappsample.domain.UseCases.DBMyWeatherRefreshUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.DBMyWeatherUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.GetMyWeatherUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.LocationServiceUseCases
 
 @Module
 class AppModule(val application: Application) {
@@ -55,9 +59,20 @@ class AppModule(val application: Application) {
     @Provides
     @AppScope
     fun getVmFactory(mApplication: Application,
-                     repo : GetMyWeatherInteractor,
-                     locationService : LocationService) : VmFactory =
-        VmFactory(mApplication, repo, locationService)
+                     locationService : LocationService,
+                     weatherUseCases: GetMyWeatherUseCases,
+                     offlineDbUseCases : DBMyWeatherUseCases,
+                     dbRefreshUseCases : DBMyWeatherRefreshUseCases,
+                     locationServiceUseCase: LocationServiceUseCases
+    ) : VmFactory =
+        VmFactory(
+            mApplication,
+            locationService,
+            weatherUseCases,
+            offlineDbUseCases,
+            dbRefreshUseCases,
+            locationServiceUseCase
+        )
 
 
     @Provides
