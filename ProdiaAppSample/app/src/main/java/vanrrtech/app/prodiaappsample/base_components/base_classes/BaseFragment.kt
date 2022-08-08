@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.base_components
+package vanrrtech.app.prodiaappsample.base_components.base_classes
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -14,7 +14,6 @@ import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProd
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
 import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopActivity
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest
-import vanrrtech.app.prodiaappsample.base_components.extensions.openAppSetting
 import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {

@@ -1,9 +1,9 @@
-package vanrrtech.app.prodiaappsample.domain.UseCases
+package vanrrtech.app.prodiaappsample.domain.UseCases.weather
 
 import kotlinx.coroutines.launch
-import vanrrtech.app.prodiaappsample.base_components.BaseUseCase
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseUseCase
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
-import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.WeatherData
 
 class DBMyWeatherRefreshUseCases(
     val myApi : WeatherDataDao

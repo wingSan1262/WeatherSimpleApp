@@ -1,7 +1,7 @@
 package vanrrtech.app.prodiaappsample.data.SQDb.weather_data
 
 import androidx.room.*
-import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.WeatherData
 
 @Dao
 interface WeatherDataDao {

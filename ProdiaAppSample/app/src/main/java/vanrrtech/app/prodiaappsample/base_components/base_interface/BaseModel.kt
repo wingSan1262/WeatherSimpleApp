@@ -1,0 +1,3 @@
+package vanrrtech.app.prodiaappsample.base_components.base_interface
+
+interface BaseModel

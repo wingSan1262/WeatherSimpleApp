@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import vanrrtech.app.prodiaappsample.R
-import vanrrtech.app.prodiaappsample.base_components.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
 import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
 import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding

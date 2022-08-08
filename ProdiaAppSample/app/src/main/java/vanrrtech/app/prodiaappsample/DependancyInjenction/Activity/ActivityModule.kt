@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.prodiaappsample.base_components.BaseActivity
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.KeyboardDismisser
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService

@@ -6,8 +6,8 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
-import vanrrtech.app.prodiaappsample.base_components.BaseActivity
-import vanrrtech.app.prodiaappsample.base_components.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 
 class ActivityLocationPermissionRequest : AppCompatActivity() {
 

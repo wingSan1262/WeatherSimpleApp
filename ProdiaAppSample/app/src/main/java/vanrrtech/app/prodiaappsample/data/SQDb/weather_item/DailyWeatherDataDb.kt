@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import vanrrtech.app.prodiaappsample.domain.data_model.daily_data_wheather.DailyWheatherItemData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.daily_data_wheather.DailyWheatherItemData
 
 @Database(entities = [DailyWheatherItemData::class], exportSchema = false, version = 1)
 @TypeConverters(WeatherItemDataTypeConverter::class)

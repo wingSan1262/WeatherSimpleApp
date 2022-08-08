@@ -1,7 +1,7 @@
-package vanrrtech.app.prodiaappsample.domain.UseCases
+package vanrrtech.app.prodiaappsample.domain.UseCases.weather
 
 import kotlinx.coroutines.launch
-import vanrrtech.app.prodiaappsample.base_components.BaseUseCase
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseUseCase
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 
 class LocationServiceUseCases(

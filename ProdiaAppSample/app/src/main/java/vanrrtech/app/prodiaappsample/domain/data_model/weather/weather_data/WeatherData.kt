@@ -1,12 +1,13 @@
-package vanrrtech.app.prodiaappsample.domain.data_model.weather_data
+package vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import vanrrtech.app.prodiaappsample.domain.data_model.current_wheather.CurrentWeatherData
-import vanrrtech.app.prodiaappsample.domain.data_model.daily_data_wheather.DailyWheatherItemData
+import vanrrtech.app.prodiaappsample.base_components.base_interface.BaseModel
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.current_wheather.CurrentWeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.daily_data_wheather.DailyWheatherItemData
 
 @Entity(tableName = "weather_data_db")
 data class WeatherData(
@@ -31,4 +32,4 @@ data class WeatherData(
     @SerializedName("daily")
     @ColumnInfo(name = "daily")
     val daily : List<DailyWheatherItemData>
-)
+) : BaseModel

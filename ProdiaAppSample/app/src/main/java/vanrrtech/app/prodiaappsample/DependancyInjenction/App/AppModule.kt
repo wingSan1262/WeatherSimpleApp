@@ -5,30 +5,27 @@ import dagger.Module
 import dagger.Provides
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewBinderFactory.ViewBinderFactory
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
-import vanrrtech.app.prodiaappsample.data.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDb
-import vanrrtech.app.prodiaappsample.data.remote_repository.WeatherApiRetrofitClient
+import vanrrtech.app.prodiaappsample.data.remote_repository.RemoteApiRetrofitClient
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
-import vanrrtech.app.prodiaappsample.domain.UseCases.DBMyWeatherRefreshUseCases
-import vanrrtech.app.prodiaappsample.domain.UseCases.DBMyWeatherUseCases
-import vanrrtech.app.prodiaappsample.domain.UseCases.GetMyWeatherUseCases
-import vanrrtech.app.prodiaappsample.domain.UseCases.LocationServiceUseCases
+import vanrrtech.app.prodiaappsample.data.SQDb.github.GithubUserDb
+import vanrrtech.app.prodiaappsample.data.SQDb.github.UserListDao
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.LocationServiceUseCases
 
 @Module
 class AppModule(val application: Application) {
 
     @Provides
     @AppScope
-    fun getClient(): WeatherApiRetrofitClient {
-        return WeatherApiRetrofitClient()
-    }
-
-    @Provides
-    @AppScope
-    fun getWeatherApi(myClient: WeatherApiRetrofitClient, weatherDataDao: WeatherDataDao): GetMyWeatherInteractor {
-        return GetMyWeatherInteractor(myClient, weatherDataDao)
+    fun getClient(): RemoteApiRetrofitClient {
+        return RemoteApiRetrofitClient()
     }
 
     @Provides
@@ -41,6 +38,18 @@ class AppModule(val application: Application) {
     @AppScope
     fun getWeatherDataDbDao(db : WeatherDataDb): WeatherDataDao {
         return db.weatherDataDao()
+    }
+
+    @Provides
+    @AppScope
+    fun getUserListDataDB(application: Application): GithubUserDb {
+        return GithubUserDb.getInstance(application.applicationContext)
+    }
+
+    @Provides
+    @AppScope
+    fun getUserListDataDBDao(db : GithubUserDb): UserListDao {
+        return db.userItemDao()
     }
 
     @Provides
@@ -63,7 +72,10 @@ class AppModule(val application: Application) {
                      weatherUseCases: GetMyWeatherUseCases,
                      offlineDbUseCases : DBMyWeatherUseCases,
                      dbRefreshUseCases : DBMyWeatherRefreshUseCases,
-                     locationServiceUseCase: LocationServiceUseCases
+                     locationServiceUseCase: LocationServiceUseCases,
+                     githubUserListUseCase: GetGithubUserListUseCase,
+                     getOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase,
+                     updateOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase
     ) : VmFactory =
         VmFactory(
             mApplication,
@@ -71,7 +83,10 @@ class AppModule(val application: Application) {
             weatherUseCases,
             offlineDbUseCases,
             dbRefreshUseCases,
-            locationServiceUseCase
+            locationServiceUseCase,
+            githubUserListUseCase,
+            getOfflineGithubUserListUseCase,
+            updateOfflineGithubUserListUseCase
         )
 
 

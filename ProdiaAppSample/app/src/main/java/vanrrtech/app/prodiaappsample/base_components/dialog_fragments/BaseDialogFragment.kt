@@ -3,7 +3,7 @@ package vanrrtech.app.prodiaappsample.base_components.dialog_fragments
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityComponent
-import vanrrtech.app.prodiaappsample.base_components.BaseActivity
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogStringBundleFactory.Companion.MESSAGE
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogStringBundleFactory.Companion.NEG_BUTTON_STRING
 import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogStringBundleFactory.Companion.POS_BUTTON_STRING

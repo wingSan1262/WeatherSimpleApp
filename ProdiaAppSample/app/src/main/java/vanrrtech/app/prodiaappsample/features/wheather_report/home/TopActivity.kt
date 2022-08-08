@@ -3,10 +3,7 @@ package vanrrtech.app.prodiaappsample.features.wheather_report.home
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatActivity
-import vanrrtech.app.prodiaappsample.R
-import vanrrtech.app.prodiaappsample.base_components.BaseActivity
-import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
-import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
 import vanrrtech.app.prodiaappsample.databinding.TopActivityLayoutBinding
 
 class TopActivity : BaseActivity<TopActivityLayoutBinding, TopActivityViewModel>() {

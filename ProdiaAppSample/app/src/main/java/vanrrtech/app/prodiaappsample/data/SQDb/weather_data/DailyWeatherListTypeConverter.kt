@@ -4,7 +4,7 @@ import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import vanrrtech.app.prodiaappsample.domain.data_model.daily_data_wheather.DailyWheatherItemData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.daily_data_wheather.DailyWheatherItemData
 import java.lang.reflect.Type
 
 @ProvidedTypeConverter

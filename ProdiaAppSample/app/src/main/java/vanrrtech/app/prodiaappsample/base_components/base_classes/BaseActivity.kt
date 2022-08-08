@@ -1,10 +1,8 @@
-package vanrrtech.app.prodiaappsample.base_components
+package vanrrtech.app.prodiaappsample.base_components.base_classes
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult

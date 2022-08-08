@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.base_components
+package vanrrtech.app.prodiaappsample.base_components.base_classes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

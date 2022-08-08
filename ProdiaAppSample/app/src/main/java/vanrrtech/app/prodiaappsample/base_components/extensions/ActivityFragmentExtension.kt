@@ -10,10 +10,10 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.Navigator
-import vanrrtech.app.prodiaappsample.base_components.BaseActivity
-import vanrrtech.app.prodiaappsample.base_components.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 
-fun BaseActivity<*,*>.findNullableNavController(): NavController? {
+fun BaseActivity<*, *>.findNullableNavController(): NavController? {
     var navController : NavController? = null
     try {
         navController = (Navigation.findNavController(this.viewBinding.root) ?: null)
@@ -21,7 +21,7 @@ fun BaseActivity<*,*>.findNullableNavController(): NavController? {
      return navController
 }
 
-fun BaseActivity<*,*>.openAppSetting(){
+fun BaseActivity<*, *>.openAppSetting(){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     val uri: Uri = Uri.fromParts("package", packageName, null)
@@ -29,7 +29,7 @@ fun BaseActivity<*,*>.openAppSetting(){
     startActivity(intent)
 }
 
-fun BaseFragment<*,*>.findNullableNavController(): NavController? {
+fun BaseFragment<*, *>.findNullableNavController(): NavController? {
     var navController : NavController? = null
     try {
         navController = (Navigation.findNavController(this.viewBinding.root) ?: null)
@@ -37,7 +37,7 @@ fun BaseFragment<*,*>.findNullableNavController(): NavController? {
     return navController
 }
 
-fun BaseFragment<*,*>.openAppSetting(){
+fun BaseFragment<*, *>.openAppSetting(){
     hostActivity.openAppSetting()
 }
 

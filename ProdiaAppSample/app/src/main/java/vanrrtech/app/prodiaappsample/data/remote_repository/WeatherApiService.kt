@@ -2,7 +2,7 @@ package vanrrtech.app.prodiaappsample.data.remote_repository
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.WeatherData
 
 interface WeatherApiService {
 

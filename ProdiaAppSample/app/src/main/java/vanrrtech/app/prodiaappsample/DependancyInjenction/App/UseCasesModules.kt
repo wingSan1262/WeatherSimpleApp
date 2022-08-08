@@ -1,26 +1,26 @@
 package vanrrtech.app.prodiaappsample.DependancyInjenction.App
 
-import android.app.Application
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.FragmentScope
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.AppScope
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
+import vanrrtech.app.prodiaappsample.data.SQDb.github.UserListDao
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
-import vanrrtech.app.prodiaappsample.data.remote_repository.WeatherApiRetrofitClient
-import vanrrtech.app.prodiaappsample.domain.UseCases.DBMyWeatherRefreshUseCases
-import vanrrtech.app.prodiaappsample.domain.UseCases.DBMyWeatherUseCases
-import vanrrtech.app.prodiaappsample.domain.UseCases.GetMyWeatherUseCases
-import vanrrtech.app.prodiaappsample.domain.UseCases.LocationServiceUseCases
-import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginVM
-import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view_model.WeatherListVM
+import vanrrtech.app.prodiaappsample.data.remote_repository.RemoteApiRetrofitClient
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.OfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
+import vanrrtech.app.prodiaappsample.domain.UseCases.weather.LocationServiceUseCases
 
 @Module
 class UseCasesModules() {
 
     @Provides
     @AppScope
-    fun getMyWeatherUseCase(myApi : WeatherApiRetrofitClient) : GetMyWeatherUseCases =
+    fun getMyWeatherUseCase(myApi : RemoteApiRetrofitClient) : GetMyWeatherUseCases =
         GetMyWeatherUseCases(myApi)
 
     @Provides
@@ -37,4 +37,19 @@ class UseCasesModules() {
     @AppScope
     fun getLocationServiceUseCases(myApi : LocationService) : LocationServiceUseCases =
         LocationServiceUseCases(myApi)
+
+    @Provides
+    @AppScope
+    fun getGithubUsers(myApi : RemoteApiRetrofitClient) : GetGithubUserListUseCase =
+        GetGithubUserListUseCase(myApi)
+
+    @Provides
+    @AppScope
+    fun updateOfflineGithubUsers(myApi : UserListDao) : OfflineGithubUserListUseCase =
+        OfflineGithubUserListUseCase(myApi)
+
+    @Provides
+    @AppScope
+    fun getOfflineGithubUsers(myApi : UserListDao) : GetOfflineGithubUserListUseCase =
+        GetOfflineGithubUserListUseCase(myApi)
 }

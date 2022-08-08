@@ -2,6 +2,7 @@ package vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vanrrtech.app.prodiaappsample.R
-import vanrrtech.app.prodiaappsample.base_components.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
+import vanrrtech.app.prodiaappsample.base_components.constants.Constants
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
 import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
 import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
 import vanrrtech.app.prodiaappsample.base_components.extensions.openAppSetting
-import vanrrtech.app.prodiaappsample.data.RepositoryInteractor.GetMyWeatherData.GetMyWeatherInteractor
 import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
-import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.MyWeatherParam
-import vanrrtech.app.prodiaappsample.domain.data_model.weather_data.WeatherData
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.MyWeatherParam
+import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.WeatherData
 import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view_model.WeatherListVM
 import javax.inject.Inject
 
@@ -49,6 +50,7 @@ class WeatherListFragment : BaseFragment<ActivityWeatherListBinding, WeatherList
             requestPermission()
         }
         viewModel.fetchCoordinate()
+        viewModel.fetchGithubUserList()
         return viewBinding.root
     }
 
@@ -144,14 +146,23 @@ class WeatherListFragment : BaseFragment<ActivityWeatherListBinding, WeatherList
             }
         })
 
+        viewModel.githubUserListLiveData.observe(viewLifecycleOwner) {
+            when(it){
+                is ResourceState.Success -> {
+                    Log.i("tes", "")
+                }
+                else -> {} // show error when network call fail
+            }
+        }
+
         viewModel.gpscoordinateLiveData.observe(viewLifecycleOwner, Observer {
             when(it){
                 is ResourceState.Success -> {
                     MyWeatherParam(
                         it.body.lat.toString(),
                         it.body.lon.toString(),
-                        GetMyWeatherInteractor.TEMP_EXCLUDE_PARAM,
-                        GetMyWeatherInteractor.API_KEY
+                        Constants.TEMP_EXCLUDE_PARAM,
+                        Constants.API_KEY
                     ).run {
                         viewModel.fetchServerWeatherData(this)
                         viewModel.currentWeatherParam = this

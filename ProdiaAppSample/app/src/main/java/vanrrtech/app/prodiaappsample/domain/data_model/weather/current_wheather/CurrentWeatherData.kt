@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.domain.data_model.current_wheather
+package vanrrtech.app.prodiaappsample.domain.data_model.weather.current_wheather
 
 import com.google.gson.annotations.SerializedName
 
