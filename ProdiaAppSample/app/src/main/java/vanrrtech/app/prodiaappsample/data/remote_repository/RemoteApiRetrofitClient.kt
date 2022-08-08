@@ -4,7 +4,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import vanrrtech.app.prodiaappsample.domain.data_model.github.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.request.SearchUserRequest
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.SearchResult
 import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.MyWeatherParam
 import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.WeatherData
 
@@ -54,6 +56,10 @@ class RemoteApiRetrofitClient {
 
     suspend fun getUserList(): List<GithubUserItemResponse> {
         return getGithubRetrofit().getUsersList()
+    }
+
+    suspend fun searchUserResult(request: SearchUserRequest): SearchResult? {
+        return getGithubRetrofit().searchUser(request.query, request.type)
     }
 
 }

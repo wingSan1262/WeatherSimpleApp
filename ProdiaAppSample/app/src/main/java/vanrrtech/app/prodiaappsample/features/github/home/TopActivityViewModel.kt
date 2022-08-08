@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.features.wheather_report.home
+package vanrrtech.app.prodiaappsample.features.github.home
 
 import androidx.lifecycle.ViewModel
 

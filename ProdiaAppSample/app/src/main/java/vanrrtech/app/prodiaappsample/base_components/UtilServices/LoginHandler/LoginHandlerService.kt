@@ -12,12 +12,30 @@ class LoginHandlerService(val sharedPreferenceService: SharedPreferenceService) 
 
     val mImageList = ArrayList<String>()
 
+    val mAddressList = ArrayList<String>()
+
     init {
-        mImageList.add("https://awsimages.detik.net.id/visual/2021/12/30/northkorea-kimjongun_169.jpeg?w=360&q=90")
-        mImageList.add("https://www.ranahriau.com/foto_berita/28908511.jpg")
-        mImageList.add("https://lastfm.freetls.fastly.net/i/u/770x0/7798032e130cb29688b2f57bc6748abc.jpg")
-        mImageList.add("http://c.files.bbci.co.uk/11AE3/production/_110791427_jkw01.png")
-        mImageList.add("https://www.smamcileungsi.sch.id/wp-content/uploads/2021/09/ahmad-dahlan.png")
+        mImageList.add("Director of Netshare Company")
+        mImageList.add("Director of Mihoyo Company")
+        mImageList.add("Simple minded android developer, love to sleep")
+        mImageList.add("I'm ajaib eng, sleep while i code, code while i sleep")
+        mImageList.add("nah just see my repo broo . . .")
+
+        mAddressList.add("Taipei, Taiwan")
+        mAddressList.add("Depok, Jawa Barat")
+        mAddressList.add("Oslo, Poland")
+        mAddressList.add("Kyoto, Japan")
+        mAddressList.add("Hirooka, Japan")
+    }
+
+    fun randomBioDescGenerator() : String {
+        val index = (Math.random() * mImageList.size).toInt()
+        return mImageList.get(index)
+    }
+
+    fun randomLocationDescGenerator() : String {
+        val index = (Math.random() * mAddressList.size).toInt()
+        return mAddressList.get(index)
     }
 
     fun randomImageGenerator() : String {

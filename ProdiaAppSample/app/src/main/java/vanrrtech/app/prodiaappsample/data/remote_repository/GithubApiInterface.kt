@@ -1,7 +1,9 @@
 package vanrrtech.app.prodiaappsample.data.remote_repository
 
 import retrofit2.http.GET
-import vanrrtech.app.prodiaappsample.domain.data_model.github.GithubUserItemResponse
+import retrofit2.http.Query
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.SearchResult
 
 interface GithubApiInterface {
     @GET("users")
@@ -9,8 +11,8 @@ interface GithubApiInterface {
 
 //    //https://api.github.com/search/
 //    //q=user%3AwingSan1262&type=Users
-//    @GET("search/users")
-//    suspend fun searchUser(@Query("q") searchKey : String, @Query("type") type : String): SearchResult?
+    @GET("search/users")
+    suspend fun searchUser(@Query("q") searchKey : String, @Query("type") type : String): SearchResult?
 //
 //    @GET("users/{USERNAME}/repos")
 //    suspend fun getUserRepos(@Path("USERNAME") userName : String) : List<UserRepoDetails>

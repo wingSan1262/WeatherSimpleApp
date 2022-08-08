@@ -9,7 +9,8 @@ import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
 import vanrrtech.app.prodiaappsample.data.remote_repository.RemoteApiRetrofitClient
 import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
 import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.OfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.SearchUserGithubUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
@@ -45,11 +46,16 @@ class UseCasesModules() {
 
     @Provides
     @AppScope
-    fun updateOfflineGithubUsers(myApi : UserListDao) : OfflineGithubUserListUseCase =
-        OfflineGithubUserListUseCase(myApi)
+    fun updateOfflineGithubUsers(myApi : UserListDao) : UpdateOfflineGithubUserListUseCase =
+        UpdateOfflineGithubUserListUseCase(myApi)
 
     @Provides
     @AppScope
     fun getOfflineGithubUsers(myApi : UserListDao) : GetOfflineGithubUserListUseCase =
         GetOfflineGithubUserListUseCase(myApi)
+
+    @Provides
+    @AppScope
+    fun searchUser(myApi : RemoteApiRetrofitClient) : SearchUserGithubUseCase =
+        SearchUserGithubUseCase(myApi)
 }

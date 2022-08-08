@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import vanrrtech.app.prodiaappsample.domain.data_model.github.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
 
 @Database(entities = [GithubUserItemResponse::class], exportSchema = false, version = 1)
 public abstract class GithubUserDb() : RoomDatabase() {

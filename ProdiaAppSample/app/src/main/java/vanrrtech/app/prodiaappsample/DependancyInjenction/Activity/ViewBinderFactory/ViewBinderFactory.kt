@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopActivity
-import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
-import vanrrtech.app.prodiaappsample.databinding.LoginActivityBinding
-import vanrrtech.app.prodiaappsample.databinding.TopActivityLayoutBinding
-import vanrrtech.app.prodiaappsample.databinding.TopFragmentLayoutBinding
-import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopFragment
+import vanrrtech.app.prodiaappsample.databinding.*
+import vanrrtech.app.prodiaappsample.features.github.home.TopActivity
+import vanrrtech.app.prodiaappsample.features.github.SearchFragment
+import vanrrtech.app.prodiaappsample.features.github.SearchFragmentVm
+import vanrrtech.app.prodiaappsample.features.github.home.TopFragment
 import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginFragment
 import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListFragment
 
@@ -34,6 +33,12 @@ class ViewBinderFactory() {
             }
             TopFragment::class.java -> {
                 (fragment as TopFragment).viewBinding = TopFragmentLayoutBinding.inflate(inflater,
+                    container,
+                    false
+                )
+            }
+            SearchFragment::class.java -> {
+                (fragment as SearchFragment).viewBinding = SearchUserGithubFragmentBinding.inflate(inflater,
                     container,
                     false
                 )

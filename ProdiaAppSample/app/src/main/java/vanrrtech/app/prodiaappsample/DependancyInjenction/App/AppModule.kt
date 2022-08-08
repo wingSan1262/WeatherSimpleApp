@@ -14,6 +14,8 @@ import vanrrtech.app.prodiaappsample.data.SQDb.github.GithubUserDb
 import vanrrtech.app.prodiaappsample.data.SQDb.github.UserListDao
 import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
 import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.SearchUserGithubUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
@@ -75,7 +77,8 @@ class AppModule(val application: Application) {
                      locationServiceUseCase: LocationServiceUseCases,
                      githubUserListUseCase: GetGithubUserListUseCase,
                      getOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase,
-                     updateOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase
+                     updateOfflineGithubUserListUseCase: UpdateOfflineGithubUserListUseCase,
+                     searchUserGithubUseCase: SearchUserGithubUseCase
     ) : VmFactory =
         VmFactory(
             mApplication,
@@ -86,7 +89,8 @@ class AppModule(val application: Application) {
             locationServiceUseCase,
             githubUserListUseCase,
             getOfflineGithubUserListUseCase,
-            updateOfflineGithubUserListUseCase
+            updateOfflineGithubUserListUseCase,
+            searchUserGithubUseCase
         )
 
 

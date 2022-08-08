@@ -1,7 +1,7 @@
 package vanrrtech.app.prodiaappsample.data.SQDb.github
 
 import androidx.room.*
-import vanrrtech.app.prodiaappsample.domain.data_model.github.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
 
 @Dao
 interface UserListDao {

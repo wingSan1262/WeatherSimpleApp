@@ -7,10 +7,13 @@ import androidx.lifecycle.ViewModelProvider
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
 import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
 import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.SearchUserGithubUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.LocationServiceUseCases
+import vanrrtech.app.prodiaappsample.features.github.SearchFragmentVm
 import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginVM
 import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view_model.WeatherListVM
 
@@ -24,7 +27,8 @@ class VmFactory(
     val locationServiceUseCase: LocationServiceUseCases,
     val githubUserListUseCase: GetGithubUserListUseCase,
     val getOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase,
-    val updateOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase
+    val updateOfflineGithubUserListUseCase: UpdateOfflineGithubUserListUseCase,
+    val searchUserGithubUseCase: SearchUserGithubUseCase
 ) :
     ViewModelProvider.Factory {
 
@@ -41,6 +45,15 @@ class VmFactory(
             }
             LoginVM::class.java -> {
                 return LoginVM(locationService) as T
+            }
+
+            SearchFragmentVm::class.java -> {
+                return SearchFragmentVm(
+                    githubUserListUseCase,
+                    getOfflineGithubUserListUseCase,
+                    updateOfflineGithubUserListUseCase,
+                    searchUserGithubUseCase
+                ) as T
             }
             else -> {
                 throw Exception("no vm found")

@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_user_list.xml" value="0.335" />
+        <entry key="app/src/main/res/drawable/bg_user_list_rounded.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/search_user_github_fragment.xml" value="0.22264556884765627" />
+        <entry key="app/src/main/res/layout/search_user_item.xml" value="0.35" />
         <entry key="app/src/main/res/layout/top_activity_layout.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/top_fragment_layout.xml" value="0.1" />
       </map>

@@ -1,6 +1,7 @@
 package vanrrtech.app.prodiaappsample.base_components.base_classes
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
@@ -12,7 +13,7 @@ import androidx.viewbinding.ViewBinding
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.FragmentModule
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
-import vanrrtech.app.prodiaappsample.features.wheather_report.home.TopActivity
+import vanrrtech.app.prodiaappsample.features.github.home.TopActivity
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest
 import javax.inject.Inject
 
@@ -46,8 +47,17 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
             .get(modelClass) as VM
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     fun requestPermission(){ ActivityLocationPermissionRequest.requestLocation(this) }
     fun dismissKey(){ hostActivity.dismissKey()}
+
+    fun withBinding(block: (VB.() -> Unit)): VB{
+        val bindingAfterRunning: VB = viewBinding.apply { block.invoke(this) }
+        return bindingAfterRunning
+    }
 
 
 }

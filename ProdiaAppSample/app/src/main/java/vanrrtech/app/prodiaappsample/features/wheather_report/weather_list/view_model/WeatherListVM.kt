@@ -12,7 +12,7 @@ import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshU
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.LocationServiceUseCases
-import vanrrtech.app.prodiaappsample.domain.data_model.github.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
 import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.MyWeatherParam
 
 class WeatherListVM(
