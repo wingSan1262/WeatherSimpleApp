@@ -13,6 +13,7 @@ import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 import vanrrtech.app.prodiaappsample.base_components.constants.PARAMETERS
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
 import vanrrtech.app.prodiaappsample.base_components.extensions.loadImage
+import vanrrtech.app.prodiaappsample.base_components.extensions.observeEvent
 import vanrrtech.app.prodiaappsample.base_components.extensions.setVisibility
 import vanrrtech.app.prodiaappsample.databinding.UserDetailFragmentBinding
 import vanrrtech.app.prodiaappsample.domain.data_model.github.request.UserDetailRequest
@@ -83,10 +84,6 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFra
 
     fun updateList(items: List<UserRepoDetails>){
         repoAdapter?.clearList()
-        if(items.isEmpty() ||
-            items.get(0).owner.login != viewModel.userClickedModel?.login) {
-            return
-        }
         lifecycleScope.launch {
                 items.forEach {
                     repoAdapter?.insertAtTop(it)
@@ -112,19 +109,16 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFra
     }
 
     fun observerData(){
-        viewModel.userRepoLiveData.observe(viewLifecycleOwner){
-            it.contentIfNotHandled?.apply {
-                when (this){
-                    is ResourceState.Success ->
-                        updateList(body)
-                    is ResourceState.Failure ->
-                        snackBarHandler.showSnackBar("Oops, please check your internet connection")
-                    else -> {} // do nothing
-                }
+        observeEvent(viewModel.userRepoLiveData){
+            when (it){
+                is ResourceState.Success ->
+                    updateList(it.body)
+                is ResourceState.Failure ->
+                    snackBarHandler.showSnackBar("Oops, please check your internet connection")
+                else -> {} // do nothing
             }
         }
-
-        viewModel.userDetailLiveData.observe(viewLifecycleOwner){
+        observeEvent(viewModel.userDetailLiveData){
             when (it){
                 is ResourceState.Success -> {
                     updateUserDetails(it.body)

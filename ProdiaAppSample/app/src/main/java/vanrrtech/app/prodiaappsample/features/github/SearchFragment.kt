@@ -17,10 +17,7 @@ import vanrrtech.app.prodiaappsample.R
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 import vanrrtech.app.prodiaappsample.base_components.constants.PARAMETERS
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
-import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
-import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
-import vanrrtech.app.prodiaappsample.base_components.extensions.setVisibility
-import vanrrtech.app.prodiaappsample.base_components.extensions.textChanges
+import vanrrtech.app.prodiaappsample.base_components.extensions.*
 import vanrrtech.app.prodiaappsample.databinding.SearchUserGithubFragmentBinding
 import vanrrtech.app.prodiaappsample.domain.data_model.github.request.SearchUserRequest
 import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
@@ -51,7 +48,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
         super.onResume()
         initUi()
         observerData()
-        if(userListAdapter?.listItems?.isEmpty() == true)
+        if(!viewModel.isSearchQueried)
             viewModel.fetchUserList()
     }
 
@@ -110,7 +107,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
     }
 
     fun observerData(){
-        viewModel.githubUserLiveData.observe(viewLifecycleOwner) {
+        observeEvent(viewModel.githubUserLiveData){
             when (it) {
                 is ResourceState.Success -> updateList(it.body)
                 is ResourceState.Failure -> {
@@ -121,7 +118,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
             }
         }
 
-        viewModel.offlineGithubUserLiveData.observe(viewLifecycleOwner) {
+        observeEvent(viewModel.offlineGithubUserLiveData){
             when (it) {
                 is ResourceState.Success -> {
                     if(it.body.isNotEmpty()) updateList(it.body)
@@ -135,7 +132,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
             }
         }
 
-        viewModel.updateOfflineUserLiveData.observe(viewLifecycleOwner) {
+        observeEvent(viewModel.updateOfflineUserLiveData){
             when (it) {
                 is ResourceState.Failure -> {
                     withBinding { cvLoading.setVisibility(false) }
@@ -145,12 +142,12 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
             }
         }
 
-        viewModel.searchResultLiveData.observe(viewLifecycleOwner) {
+        observeEvent(viewModel.searchResultLiveData){
             when (it) {
                 is ResourceState.Success -> {
                     if(it.body.items.isNotEmpty())
                         updateList(it.body.items as List<GithubUserItemResponse>, isSearch = true) else {
-                            viewModel.fetchUserList()
+                        viewModel.fetchUserList()
                     }
                 }
                 is ResourceState.Failure -> {

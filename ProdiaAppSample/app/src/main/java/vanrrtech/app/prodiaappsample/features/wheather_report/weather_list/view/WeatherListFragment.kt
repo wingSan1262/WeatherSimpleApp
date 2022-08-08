@@ -19,6 +19,7 @@ import vanrrtech.app.prodiaappsample.base_components.constants.Constants
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
 import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
 import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
+import vanrrtech.app.prodiaappsample.base_components.extensions.observeEvent
 import vanrrtech.app.prodiaappsample.base_components.extensions.openAppSetting
 import vanrrtech.app.prodiaappsample.databinding.ActivityWeatherListBinding
 import vanrrtech.app.prodiaappsample.domain.data_model.weather.weather_data.MyWeatherParam
@@ -139,12 +140,13 @@ class WeatherListFragment : BaseFragment<ActivityWeatherListBinding, WeatherList
             }
         }
 
-        viewModel.offlineWeatherLiveData.observe(viewLifecycleOwner, Observer {
+        observeEvent(viewModel.offlineWeatherLiveData){
             when(it){
                 is ResourceState.Success -> updateListAndCurrentWeather(it.body)
                 else -> {} // show error when network call fail
             }
-        })
+        }
+
 
         viewModel.githubUserListLiveData.observe(viewLifecycleOwner) {
             when(it){
@@ -155,7 +157,7 @@ class WeatherListFragment : BaseFragment<ActivityWeatherListBinding, WeatherList
             }
         }
 
-        viewModel.gpscoordinateLiveData.observe(viewLifecycleOwner, Observer {
+        observeEvent(viewModel.gpscoordinateLiveData){
             when(it){
                 is ResourceState.Success -> {
                     MyWeatherParam(
@@ -170,7 +172,7 @@ class WeatherListFragment : BaseFragment<ActivityWeatherListBinding, WeatherList
                 }
                 else -> {} // show error when network call fail
             }
-        })
+        }
     }
 
 

@@ -29,13 +29,15 @@ class WeatherListVM(
     }
     val weatherLiveData =
         Transformations.switchMap(weatherUseCases.currentData) { it ->
-        val livedata = MutableLiveData<ResourceState<WeatherData>>()
-            livedata.value = it
-        when(it){
-            is ResourceState.Success -> {
-                it.body?.let { // store data
-                    dbRefreshUseCases.setup(it) } }
-            else->{} }
+            val livedata = MutableLiveData<ResourceState<WeatherData>>()
+            it.contentIfNotHandled?.let{
+                livedata.value = it
+                when(it){
+                    is ResourceState.Success -> {
+                        it.body?.let { // store data
+                            dbRefreshUseCases.setup(it) } }
+                    else->{} }
+            }
         return@switchMap livedata
     }
 
@@ -51,12 +53,14 @@ class WeatherListVM(
     val githubUserListLiveData =
     Transformations.switchMap(githubUserListUseCase.currentData) { it ->
         val livedata = MutableLiveData<ResourceState<List<GithubUserItemResponse>>>()
-        livedata.value = it
-        when(it){
-            is ResourceState.Success -> {
-                Log.i("tes", "tess")
+        it.contentIfNotHandled?.let{
+            when(it){
+                is ResourceState.Success -> {
+                    Log.i("tes", "tess")
+                }
+                else->{}
             }
-            else->{}
+            livedata.value = it
         }
         return@switchMap livedata
     }

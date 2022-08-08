@@ -24,12 +24,7 @@ class UserDetailFragmentVm(
         getGithubUserDetails.setup(param)
     }
 
-    val userRepoLiveData =
-        Transformations.switchMap(getGithubUserRepoContent.currentData){
-            val livedata = MutableLiveData<Event<ResourceState<List<UserRepoDetails>>>>()
-            livedata.postValue(Event(it))
-            return@switchMap livedata
-        }
+    val userRepoLiveData = getGithubUserRepoContent.currentData
     fun fetchRepoList(param : UserDetailRequest){
         getGithubUserRepoContent.setup(param)
     }

@@ -13,6 +13,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
@@ -30,6 +32,8 @@ import kotlinx.coroutines.flow.onStart
 import vanrrtech.app.prodiaappsample.R
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.entities.Event
+import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
 
 fun BaseActivity<*, *>.findNullableNavController(): NavController? {
     var navController : NavController? = null
@@ -121,4 +125,15 @@ fun EditText.textChanges(): Flow<CharSequence?> {
         addTextChangedListener(listener)
         awaitClose { removeTextChangedListener(listener) }
     }.onStart { emit(text) }
+}
+
+fun <K> Fragment.observeEvent(
+    data: LiveData<Event<K>>,
+    callback : (K) -> Unit
+){
+    data.observe(viewLifecycleOwner){ it ->
+        it.contentIfNotHandled?.let {
+            callback(it)
+        }
+    }
 }

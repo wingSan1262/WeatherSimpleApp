@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import vanrrtech.app.prodiaappsample.base_components.abstracts.UseCase
+import vanrrtech.app.prodiaappsample.base_components.entities.Event
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
 import kotlin.coroutines.CoroutineContext
 
 open class BaseUseCase<PARAM, RESULT> : CoroutineScope, UseCase() {
 
-    private val _currentData = MutableLiveData<ResourceState<RESULT>>()
-    val currentData : LiveData<ResourceState<RESULT>> = _currentData
+    private val _currentData = MutableLiveData<Event<ResourceState<RESULT>>>()
+    val currentData : LiveData<Event<ResourceState<RESULT>>> = _currentData
 
     protected var job = Job()
     override val coroutineContext: CoroutineContext
@@ -28,7 +29,7 @@ open class BaseUseCase<PARAM, RESULT> : CoroutineScope, UseCase() {
                     Throwable("There is something wrong in the network"))
             }
             withContext(Dispatchers.Main){
-                _currentData.postValue(res)
+                _currentData.postValue(Event(res))
             }
         }
     }
