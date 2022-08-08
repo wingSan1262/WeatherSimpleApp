@@ -3,8 +3,8 @@ package vanrrtech.app.kompasgithubapp.app.DependancyInjenction
 import android.app.Application
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewBinderFactory.ViewBinderFactory
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
+import vanrrtech.app.prodiaappsample.di.Activity.ViewBinderFactory.ViewBinderFactory
+import vanrrtech.app.prodiaappsample.di.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDb
 import vanrrtech.app.prodiaappsample.data.remote_repository.RemoteApiRetrofitClient
@@ -12,10 +12,7 @@ import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.Locat
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
 import vanrrtech.app.prodiaappsample.data.SQDb.github.GithubUserDb
 import vanrrtech.app.prodiaappsample.data.SQDb.github.UserListDao
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.SearchUserGithubUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.*
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
@@ -78,7 +75,9 @@ class AppModule(val application: Application) {
                      githubUserListUseCase: GetGithubUserListUseCase,
                      getOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase,
                      updateOfflineGithubUserListUseCase: UpdateOfflineGithubUserListUseCase,
-                     searchUserGithubUseCase: SearchUserGithubUseCase
+                     searchUserGithubUseCase: SearchUserGithubUseCase,
+                     getGithubUserDetails: GetGithubUserDetails,
+                     getGithubUserRepoContent: GetGithubUserRepoContentUseCase
     ) : VmFactory =
         VmFactory(
             mApplication,
@@ -90,7 +89,9 @@ class AppModule(val application: Application) {
             githubUserListUseCase,
             getOfflineGithubUserListUseCase,
             updateOfflineGithubUserListUseCase,
-            searchUserGithubUseCase
+            searchUserGithubUseCase,
+            getGithubUserDetails,
+            getGithubUserRepoContent
         )
 
 

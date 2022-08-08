@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.delay
@@ -12,8 +13,12 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import vanrrtech.app.prodiaappsample.R
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.constants.PARAMETERS
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
+import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
+import vanrrtech.app.prodiaappsample.base_components.extensions.navigateSafe
 import vanrrtech.app.prodiaappsample.base_components.extensions.setVisibility
 import vanrrtech.app.prodiaappsample.base_components.extensions.textChanges
 import vanrrtech.app.prodiaappsample.databinding.SearchUserGithubFragmentBinding
@@ -46,25 +51,31 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
         super.onResume()
         initUi()
         observerData()
-        viewModel.fetchUserList()
+        if(userListAdapter?.listItems?.isEmpty() == true)
+            viewModel.fetchUserList()
     }
 
     fun initUi(){
 
         withBinding {
             userRv.setVisibility(false)
-            if(userListAdapter == null){
-                userListAdapter = UserListAdapter(loginHandler){
+            if(userListAdapter == null) {
+                userListAdapter = UserListAdapter(loginHandler) {
                     it as GithubUserItemResponse
-                    // do some thing
+                    findNullableNavController()?.navigateSafe(
+                        R.id.searchFragment_to_DetailUser,
+                        bundleOf(
+                            PARAMETERS.USER_CLICKED_MODEL to it
+                        )
+                    )
                 }
-                userRv.let {
-                    it.layoutManager = LinearLayoutManager(context,
-                        LinearLayoutManager.VERTICAL,
-                        false)
-                    it.isNestedScrollingEnabled = false
-                    it.adapter = userListAdapter
-                }
+            }
+            userRv.let {
+                it.layoutManager = LinearLayoutManager(context,
+                    LinearLayoutManager.VERTICAL,
+                    false)
+                it.isNestedScrollingEnabled = false
+                it.adapter = userListAdapter
             }
             searchField.textChanges()?.debounce(400)?.onEach { s ->
                 if (s.isNullOrBlank()) {

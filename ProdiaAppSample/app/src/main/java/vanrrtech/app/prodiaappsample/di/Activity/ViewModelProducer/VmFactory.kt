@@ -1,19 +1,17 @@
-package vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer
+package vanrrtech.app.prodiaappsample.di.Activity.ViewModelProducer
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 
 import androidx.lifecycle.ViewModelProvider
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.LocationService
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.SearchUserGithubUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.*
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.LocationServiceUseCases
 import vanrrtech.app.prodiaappsample.features.github.SearchFragmentVm
+import vanrrtech.app.prodiaappsample.features.github.UserDetailFragmentVm
 import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginVM
 import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view_model.WeatherListVM
 
@@ -28,7 +26,9 @@ class VmFactory(
     val githubUserListUseCase: GetGithubUserListUseCase,
     val getOfflineGithubUserListUseCase: GetOfflineGithubUserListUseCase,
     val updateOfflineGithubUserListUseCase: UpdateOfflineGithubUserListUseCase,
-    val searchUserGithubUseCase: SearchUserGithubUseCase
+    val searchUserGithubUseCase: SearchUserGithubUseCase,
+    val getGithubUserDetails: GetGithubUserDetails,
+    val getGithubUserRepoContent: GetGithubUserRepoContentUseCase
 ) :
     ViewModelProvider.Factory {
 
@@ -48,11 +48,25 @@ class VmFactory(
             }
 
             SearchFragmentVm::class.java -> {
-                return SearchFragmentVm(
+                return modelClass.getConstructor(
+                    GetGithubUserListUseCase::class.java,
+                    GetOfflineGithubUserListUseCase::class.java,
+                    UpdateOfflineGithubUserListUseCase::class.java,
+                    SearchUserGithubUseCase::class.java
+                ).newInstance(
                     githubUserListUseCase,
                     getOfflineGithubUserListUseCase,
                     updateOfflineGithubUserListUseCase,
                     searchUserGithubUseCase
+                ) as T
+            }
+            UserDetailFragmentVm::class.java -> {
+                return modelClass.getConstructor(
+                    GetGithubUserDetails::class.java,
+                    GetGithubUserRepoContentUseCase::class.java
+                ).newInstance(
+                    getGithubUserDetails,
+                    getGithubUserRepoContent
                 ) as T
             }
             else -> {

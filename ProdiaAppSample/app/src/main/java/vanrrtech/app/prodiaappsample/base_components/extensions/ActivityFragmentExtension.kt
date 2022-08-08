@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
@@ -46,10 +47,10 @@ fun BaseActivity<*, *>.openAppSetting(){
     startActivity(intent)
 }
 
-fun BaseFragment<*, *>.findNullableNavController(): NavController? {
+fun Fragment.findNullableNavController(): NavController? {
     var navController : NavController? = null
     try {
-        navController = (Navigation.findNavController(this.viewBinding.root) ?: null)
+        navController = (this.view?.let { Navigation.findNavController(it) } ?: null)
     } catch (e : Throwable){navController = null; Log.d("app log", "nav controller heckled up")}
     return navController
 }

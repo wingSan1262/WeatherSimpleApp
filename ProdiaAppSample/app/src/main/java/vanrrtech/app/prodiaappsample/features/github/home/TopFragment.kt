@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
+import androidx.navigation.fragment.findNavController
+import vanrrtech.app.prodiaappsample.R
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
+import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
 import vanrrtech.app.prodiaappsample.databinding.TopFragmentLayoutBinding
 
 class TopFragment : BaseFragment<TopFragmentLayoutBinding, TopFragmentVm>() {
@@ -26,5 +29,14 @@ class TopFragment : BaseFragment<TopFragmentLayoutBinding, TopFragmentVm>() {
             bindThisView(this, layoutInflater, it)
         }
         return viewBinding.root
+    }
+
+    fun onBackPressed(){
+        val navHost = childFragmentManager.fragments[0]
+
+        if(navHost?.findNullableNavController()?.currentDestination?.id == R.id.searchFragment){
+            hostActivity.finish(); return
+        }
+        navHost?.findNullableNavController()?.navigateUp()
     }
 }

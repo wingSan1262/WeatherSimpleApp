@@ -38,4 +38,36 @@ data class SearchResult(
 
     @SerializedName("total_count")
     var total : Int
-)
+) : Serializable, BaseModel
+
+data class UserDetails(
+    @SerializedName("name")
+    var name : String,
+    @SerializedName("login")
+    var login : String,
+    @SerializedName("avatar_url")
+    var avatarUrl : String,
+    @SerializedName("bio")
+    var bio : String,
+    @SerializedName("followers")
+    var followers : String,
+    @SerializedName("following")
+    var following : String,
+    @SerializedName("location")
+    var location : String,
+    @SerializedName("email")
+    var email : String,
+) : Serializable, BaseModel
+
+data class UserRepoDetails(
+    @SerializedName("name")
+    var name : String,
+    @SerializedName("owner")
+    var owner : GithubUserItemResponse,
+    @SerializedName("description")
+    var description : String,
+    @SerializedName("watcher_count")
+    var watcher_count : Int,
+    @SerializedName("updated_at")
+    var update_at : String
+) : Serializable, BaseModel

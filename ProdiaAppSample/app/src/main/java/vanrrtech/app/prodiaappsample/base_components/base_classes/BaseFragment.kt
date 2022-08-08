@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.FragmentModule
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
+import vanrrtech.app.prodiaappsample.di.Activity.ViewModelProducer.VmFactory
+import vanrrtech.app.prodiaappsample.di.Fragments.FragmentResultLauncher
 import vanrrtech.app.prodiaappsample.features.github.home.TopActivity
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.ActivityLocationPermissionRequest
 import javax.inject.Inject

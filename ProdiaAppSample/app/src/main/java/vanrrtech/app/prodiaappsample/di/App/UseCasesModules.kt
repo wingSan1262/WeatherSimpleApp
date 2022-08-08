@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.DependancyInjenction.App
+package vanrrtech.app.prodiaappsample.di.App
 
 import dagger.Module
 import dagger.Provides
@@ -7,10 +7,7 @@ import vanrrtech.app.prodiaappsample.base_components.UtilServices.location.Locat
 import vanrrtech.app.prodiaappsample.data.SQDb.github.UserListDao
 import vanrrtech.app.prodiaappsample.data.SQDb.weather_data.WeatherDataDao
 import vanrrtech.app.prodiaappsample.data.remote_repository.RemoteApiRetrofitClient
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.GetOfflineGithubUserListUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.SearchUserGithubUseCase
-import vanrrtech.app.prodiaappsample.domain.UseCases.github.UpdateOfflineGithubUserListUseCase
+import vanrrtech.app.prodiaappsample.domain.UseCases.github.*
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherRefreshUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.DBMyWeatherUseCases
 import vanrrtech.app.prodiaappsample.domain.UseCases.weather.GetMyWeatherUseCases
@@ -58,4 +55,14 @@ class UseCasesModules() {
     @AppScope
     fun searchUser(myApi : RemoteApiRetrofitClient) : SearchUserGithubUseCase =
         SearchUserGithubUseCase(myApi)
+
+    @Provides
+    @AppScope
+    fun userDetailUseCase(myApi : RemoteApiRetrofitClient) : GetGithubUserDetails =
+        GetGithubUserDetails(myApi)
+
+    @Provides
+    @AppScope
+    fun userRepoUseCase(myApi : RemoteApiRetrofitClient) : GetGithubUserRepoContentUseCase =
+        GetGithubUserRepoContentUseCase(myApi)
 }

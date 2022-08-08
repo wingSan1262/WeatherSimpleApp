@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments
+package vanrrtech.app.prodiaappsample.di.Fragments
 
 import javax.inject.Qualifier
 

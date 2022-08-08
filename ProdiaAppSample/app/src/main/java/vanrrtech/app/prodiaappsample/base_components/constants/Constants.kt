@@ -6,5 +6,10 @@ class Constants {
         val TEMP_EXCLUDE_PARAM = "hourly,minutely"
         val IMAGE_LINK = "https://openweathermap.org/img/wn/"
     }
+}
 
+class PARAMETERS{
+    companion object{
+        val USER_CLICKED_MODEL = "clicked_user_model"
+    }
 }

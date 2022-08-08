@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Fragments.FragmentResultLauncher
+import vanrrtech.app.prodiaappsample.di.Activity.ViewModelProducer.VmFactory
+import vanrrtech.app.prodiaappsample.di.Fragments.FragmentResultLauncher
 import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginVM
 import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view_model.WeatherListVM
 

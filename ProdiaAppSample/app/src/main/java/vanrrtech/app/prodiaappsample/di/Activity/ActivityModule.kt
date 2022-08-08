@@ -37,7 +37,7 @@ class ActivityModule (val activity: AppCompatActivity, val context : Context) {
     fun fragmentManager() : FragmentManager = activity.supportFragmentManager
 
     @Provides
-    @vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ActivityResultLauncher
+    @vanrrtech.app.prodiaappsample.di.Activity.ActivityResultLauncher
     fun getResultLauncher(activity: AppCompatActivity): ActivityResultLauncher<Intent> =
         activity.registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()

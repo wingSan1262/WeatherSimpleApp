@@ -14,8 +14,8 @@ import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityC
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity.ActivityModule
 import vanrrtech.app.kompasgithubapp.app.DependancyInjenction.AppComponent
 import vanrrtech.app.prodiaappsample.Application.MyApplication
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewBinderFactory.ViewBinderFactory
-import vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewModelProducer.VmFactory
+import vanrrtech.app.prodiaappsample.di.Activity.ViewBinderFactory.ViewBinderFactory
+import vanrrtech.app.prodiaappsample.di.Activity.ViewModelProducer.VmFactory
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.KeyboardDismisser
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService
@@ -29,7 +29,7 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivit
     abstract fun getActivity() : AppCompatActivity
     abstract fun onResult(result : ActivityResult)
 
-    @Inject @vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ActivityResultLauncher
+    @Inject @vanrrtech.app.prodiaappsample.di.Activity.ActivityResultLauncher
     lateinit var resultLauncher : ActivityResultLauncher<Intent>
     @Inject lateinit var loginHandler : LoginHandlerService
     @Inject lateinit var imageLoader: Imageloader

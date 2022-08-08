@@ -41,4 +41,10 @@ class SearchFragmentVm(
     fun fetchSearchResult (param : SearchUserRequest) =
         searchUserGithubUseCase.setup(param)
 
+    fun onDestroy(){
+        getGithubUserListUseCase.cancel()
+        getOfflineGithubUserListUseCase.cancel()
+        updateGithubUserListUseCase.cancel()
+        searchUserGithubUseCase.cancel()
+    }
 }

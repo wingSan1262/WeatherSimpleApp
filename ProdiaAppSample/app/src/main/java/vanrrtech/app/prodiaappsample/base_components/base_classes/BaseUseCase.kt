@@ -28,7 +28,7 @@ open class BaseUseCase<PARAM, RESULT> : CoroutineScope, UseCase() {
                     Throwable("There is something wrong in the network"))
             }
             withContext(Dispatchers.Main){
-                _currentData.value = res
+                _currentData.postValue(res)
             }
         }
     }

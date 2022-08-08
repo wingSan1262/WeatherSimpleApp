@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.DependancyInjenction.Activity.ViewBinderFactory
+package vanrrtech.app.prodiaappsample.di.Activity.ViewBinderFactory
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,8 @@ import androidx.fragment.app.Fragment
 import vanrrtech.app.prodiaappsample.databinding.*
 import vanrrtech.app.prodiaappsample.features.github.home.TopActivity
 import vanrrtech.app.prodiaappsample.features.github.SearchFragment
-import vanrrtech.app.prodiaappsample.features.github.SearchFragmentVm
+import vanrrtech.app.prodiaappsample.features.github.UserDetailFragment
+import vanrrtech.app.prodiaappsample.features.github.UserDetailFragmentVm
 import vanrrtech.app.prodiaappsample.features.github.home.TopFragment
 import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginFragment
 import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListFragment
@@ -39,6 +40,12 @@ class ViewBinderFactory() {
             }
             SearchFragment::class.java -> {
                 (fragment as SearchFragment).viewBinding = SearchUserGithubFragmentBinding.inflate(inflater,
+                    container,
+                    false
+                )
+            }
+            UserDetailFragment::class.java -> {
+                (fragment as UserDetailFragment).viewBinding = UserDetailFragmentBinding.inflate(inflater,
                     container,
                     false
                 )

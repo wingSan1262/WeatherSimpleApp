@@ -11,3 +11,7 @@ data class SearchUserRequest(
     val query : String,
     val type : String = "Users"
 ) : Serializable, BaseModel
+
+data class UserDetailRequest(
+    val userName : String,
+) : Serializable, BaseModel

@@ -5,24 +5,21 @@ import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseViewHolder
 import vanrrtech.app.prodiaappsample.base_components.base_interface.BaseModel
 import vanrrtech.app.prodiaappsample.base_components.extensions.loadImage
 import vanrrtech.app.prodiaappsample.databinding.SearchUserItemBinding
+import vanrrtech.app.prodiaappsample.databinding.UserRepoItemBinding
 import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
+import vanrrtech.app.prodiaappsample.domain.data_model.github.response.UserRepoDetails
 
-class UserItemViewHolder(
-    val vhBinding : SearchUserItemBinding,
-    val itemClick : (BaseModel) -> Unit = {},
-    val randomHandler : LoginHandlerService
+class RepoViewHolder(
+    val vhBinding : UserRepoItemBinding
     ) : BaseViewHolder<BaseModel>(vhBinding) {
     override fun bindData(model: BaseModel) {
-        model as GithubUserItemResponse
+        model as UserRepoDetails
         with(vhBinding){
-            vhBinding.root.setOnClickListener{
-                itemClick(model)
-            }
-            profilePict.loadImage(model.avatarUrl)
-            nameTv.text = model.login
-            loginTv.text = "@ ${model.login}"
-            tvDetailDesc.text = randomHandler.randomBioDescGenerator()
-            locationTv.text = randomHandler.randomLocationDescGenerator()
+            userImage.loadImage(model.owner.avatarUrl)
+            this.repoName.text = model.name
+            this.repoDesc.text = model.description
+            this.repoStar.text = model.watcher_count.toString()
+            repoLastUpdate.text = model.update_at
         }
     }
 }

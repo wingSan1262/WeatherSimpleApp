@@ -1,4 +1,4 @@
-package vanrrtech.app.prodiaappsample.DependancyInjenction.Activity
+package vanrrtech.app.prodiaappsample.di.Activity
 
 import javax.inject.Qualifier
 
