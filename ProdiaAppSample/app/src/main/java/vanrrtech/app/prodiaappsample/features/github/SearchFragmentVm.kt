@@ -20,6 +20,7 @@ class SearchFragmentVm(
     val searchUserGithubUseCase: SearchUserGithubUseCase,
 ) : ViewModel() {
 
+    var firstOpen: Boolean = false
     var isSearchQueried = false
 
     val githubUserLiveData = Transformations.switchMap(getGithubUserListUseCase.currentData) { it ->

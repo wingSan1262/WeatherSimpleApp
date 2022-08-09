@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UnixDateConverter {
+class  UnixDateConverter {
 
     @SuppressLint("SimpleDateFormat")
     fun convertUnixTimeToDateString(unixDate: Double): String {

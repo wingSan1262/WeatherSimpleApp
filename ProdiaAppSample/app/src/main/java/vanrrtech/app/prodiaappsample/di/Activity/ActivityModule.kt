@@ -2,24 +2,14 @@ package vanrrtech.app.kompasgithubapp.app.DependancyInjenction.Activity
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import dagger.Module
 import dagger.Provides
-import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
-import vanrrtech.app.prodiaappsample.base_components.UtilServices.Imageloader
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.KeyboardDismisser
-import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.RandomHandler
 import vanrrtech.app.prodiaappsample.base_components.UtilServices.UnixDateConverter
-import vanrrtech.app.prodiaappsample.base_components.UtilServices.shared_preference.SharedPreferenceService
-import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.DialogFragmentFactory
-import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogFragmentNavigator
-import vanrrtech.app.prodiaappsample.base_components.dialog_fragments.dialog_navigator.DialogStringBundleFactory
-import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListAdapter
 
 @Module
 class ActivityModule (val activity: AppCompatActivity, val context : Context) {
@@ -36,55 +26,14 @@ class ActivityModule (val activity: AppCompatActivity, val context : Context) {
     @Provides
     fun fragmentManager() : FragmentManager = activity.supportFragmentManager
 
+
     @Provides
-    @vanrrtech.app.prodiaappsample.di.Activity.ActivityResultLauncher
-    fun getResultLauncher(activity: AppCompatActivity): ActivityResultLauncher<Intent> =
-        activity.registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            (activity as BaseActivity<*, *>).onResult(result)
-        }
+    @ActivityScope // dummy to make up content that not available in free API
+    fun getRandomGenerator() : RandomHandler = RandomHandler()
 
 
     @Provides
     fun getDateConverterService(): UnixDateConverter = UnixDateConverter()
-
-    @Provides
-    fun getRvAdapter(
-        context: Context,
-        dateConverter: UnixDateConverter,
-        imageloader: Imageloader
-    ): WeatherListAdapter = WeatherListAdapter(
-        context, dateConverter, imageloader
-    )
-
-    @ActivityScope
-    @Provides
-    fun getLoginHandler(sharedPreferences: SharedPreferenceService): LoginHandlerService =
-        LoginHandlerService(sharedPreferences)
-
-    @Provides
-    @ActivityScope
-    fun getImageLoader(): Imageloader = Imageloader(context)
-
-    @Provides
-    fun getDialogFactory(): DialogFragmentFactory = DialogFragmentFactory()
-
-    @Provides
-    fun getDialogBundleFactory(): DialogStringBundleFactory = DialogStringBundleFactory()
-
-    @Provides
-    @ActivityScope
-    fun getDialogFragmentNavigator(
-        fm : FragmentManager,
-        dialogFactory: DialogFragmentFactory,
-        bundleFactory: DialogStringBundleFactory
-    ): DialogFragmentNavigator =
-        DialogFragmentNavigator(
-            fm,
-            dialogFactory,
-            bundleFactory
-        )
 
     @Provides
     @ActivityScope

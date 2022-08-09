@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseActivity
 import vanrrtech.app.prodiaappsample.databinding.TopActivityLayoutBinding
 
-class TopActivity : BaseActivity<TopActivityLayoutBinding, TopActivityViewModel>() {
-    override fun getActivity(): AppCompatActivity {return this}
-    override fun onResult(result: ActivityResult) {}
+class TopActivity : BaseActivity<TopActivityLayoutBinding>() {
 
     val topFragment = TopFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +18,6 @@ class TopActivity : BaseActivity<TopActivityLayoutBinding, TopActivityViewModel>
             add(viewBinding.fragmentContainer.id, topFragment)
             commit()
         }
-        // do nothing
     }
 
     override fun onResume() {

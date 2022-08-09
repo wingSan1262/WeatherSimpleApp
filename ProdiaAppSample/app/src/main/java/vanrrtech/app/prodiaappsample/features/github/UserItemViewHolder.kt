@@ -1,6 +1,6 @@
 package vanrrtech.app.prodiaappsample.features.github
 
-import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.LoginHandlerService
+import vanrrtech.app.prodiaappsample.base_components.UtilServices.LoginHandler.RandomHandler
 import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseViewHolder
 import vanrrtech.app.prodiaappsample.base_components.base_interface.BaseModel
 import vanrrtech.app.prodiaappsample.base_components.extensions.loadImage
@@ -10,7 +10,7 @@ import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUse
 class UserItemViewHolder(
     val vhBinding : SearchUserItemBinding,
     val itemClick : (BaseModel) -> Unit = {},
-    val randomHandler : LoginHandlerService
+    val randomHandler : RandomHandler
     ) : BaseViewHolder<BaseModel>(vhBinding) {
     override fun bindData(model: BaseModel) {
         model as GithubUserItemResponse

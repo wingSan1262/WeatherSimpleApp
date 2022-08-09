@@ -3,6 +3,7 @@ package vanrrtech.app.prodiaappsample.base_components.base_classes
 import androidx.recyclerview.widget.RecyclerView
 import vanrrtech.app.prodiaappsample.base_components.base_interface.BaseModel
 
+/** Standard BaseAdapter Handling BaseModel List and  BaseViewHolder**/
 abstract class BaseAdapter<T : BaseViewHolder<BaseModel>> : RecyclerView.Adapter<T>() {
     open var listItems: MutableList<BaseModel> = mutableListOf()
 

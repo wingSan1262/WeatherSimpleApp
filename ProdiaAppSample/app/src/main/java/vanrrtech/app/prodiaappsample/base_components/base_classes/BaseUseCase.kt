@@ -10,13 +10,16 @@ import kotlin.coroutines.CoroutineContext
 
 open class BaseUseCase<PARAM, RESULT> : CoroutineScope, UseCase() {
 
+    /** UseCase Original Response LiveData**/
     private val _currentData = MutableLiveData<Event<ResourceState<RESULT>>>()
     val currentData : LiveData<Event<ResourceState<RESULT>>> = _currentData
 
+    /** Job Context Scope **/
     protected var job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO + job
 
+    /** Execute UseCase api or process **/
     fun execute(runApi : suspend () -> RESULT?){
         launch(coroutineContext){
             val res = try {
@@ -34,7 +37,9 @@ open class BaseUseCase<PARAM, RESULT> : CoroutineScope, UseCase() {
         }
     }
 
+    /** Open function for user class to varies the execute call **/
     open fun setup(parameter: PARAM){ checkJob() }
+    /** Common Job Control**/
     fun cancel() { job.cancel() }
     fun isCancelled(): Boolean { return job.isCancelled }
     fun checkJob(){

@@ -8,11 +8,7 @@ import vanrrtech.app.prodiaappsample.databinding.*
 import vanrrtech.app.prodiaappsample.features.github.home.TopActivity
 import vanrrtech.app.prodiaappsample.features.github.SearchFragment
 import vanrrtech.app.prodiaappsample.features.github.UserDetailFragment
-import vanrrtech.app.prodiaappsample.features.github.UserDetailFragmentVm
 import vanrrtech.app.prodiaappsample.features.github.home.TopFragment
-import vanrrtech.app.prodiaappsample.features.wheather_report.login.LoginFragment
-import vanrrtech.app.prodiaappsample.features.wheather_report.weather_list.view.WeatherListFragment
-
 class ViewBinderFactory() {
 
     fun <S> bindViewFragment(modelClass : Class<S>,
@@ -20,18 +16,6 @@ class ViewBinderFactory() {
                              inflater: LayoutInflater,
                              container : ViewGroup) {
         when (modelClass){
-            LoginFragment::class.java -> {
-                (fragment as LoginFragment).viewBinding = LoginActivityBinding.inflate(inflater,
-                    container,
-                    false
-                    )
-            }
-            WeatherListFragment::class.java -> {
-                (fragment as WeatherListFragment).viewBinding = ActivityWeatherListBinding.inflate(inflater,
-                    container,
-                    false
-                )
-            }
             TopFragment::class.java -> {
                 (fragment as TopFragment).viewBinding = TopFragmentLayoutBinding.inflate(inflater,
                     container,

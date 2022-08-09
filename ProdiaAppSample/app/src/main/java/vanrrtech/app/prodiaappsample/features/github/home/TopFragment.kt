@@ -11,10 +11,8 @@ import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 import vanrrtech.app.prodiaappsample.base_components.extensions.findNullableNavController
 import vanrrtech.app.prodiaappsample.databinding.TopFragmentLayoutBinding
 
-class TopFragment : BaseFragment<TopFragmentLayoutBinding, TopFragmentVm>() {
-    override fun onResult(result: ActivityResult) {
-        TODO("Not yet implemented")
-    }
+class TopFragment : BaseFragment<TopFragmentLayoutBinding>() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         fragmentComponent.inject(this)
         super.onCreate(savedInstanceState)

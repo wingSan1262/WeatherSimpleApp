@@ -35,21 +35,6 @@ import vanrrtech.app.prodiaappsample.base_components.base_classes.BaseFragment
 import vanrrtech.app.prodiaappsample.base_components.entities.Event
 import vanrrtech.app.prodiaappsample.base_components.entities.ResourceState
 
-fun BaseActivity<*, *>.findNullableNavController(): NavController? {
-    var navController : NavController? = null
-    try {
-        navController = (Navigation.findNavController(this.viewBinding.root) ?: null)
-    } catch (e : Throwable){navController = null; Log.d("app log", "nav controller heckled up")}
-     return navController
-}
-
-fun BaseActivity<*, *>.openAppSetting(){
-    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    val uri: Uri = Uri.fromParts("package", packageName, null)
-    intent.data = uri
-    startActivity(intent)
-}
 
 fun Fragment.findNullableNavController(): NavController? {
     var navController : NavController? = null
@@ -57,10 +42,6 @@ fun Fragment.findNullableNavController(): NavController? {
         navController = (this.view?.let { Navigation.findNavController(it) } ?: null)
     } catch (e : Throwable){navController = null; Log.d("app log", "nav controller heckled up")}
     return navController
-}
-
-fun BaseFragment<*, *>.openAppSetting(){
-    hostActivity.openAppSetting()
 }
 
 fun NavController.navigateSafe(

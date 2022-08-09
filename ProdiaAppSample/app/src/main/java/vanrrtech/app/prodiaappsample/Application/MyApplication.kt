@@ -19,7 +19,6 @@ class MyApplication : Application() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
-        // this is for storing the whole app scope
         private var context: Context? = null
         val appContext: Context?
             get() = context

@@ -22,15 +22,13 @@ import vanrrtech.app.prodiaappsample.databinding.SearchUserGithubFragmentBinding
 import vanrrtech.app.prodiaappsample.domain.data_model.github.request.SearchUserRequest
 import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUserItemResponse
 
-class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragmentVm>() {
+class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding>() {
 
-    override fun onResult(result: ActivityResult) {TODO("empty on result no implemented")}
     var userListAdapter : UserListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         fragmentComponent.inject(this)
         super.onCreate(savedInstanceState)
-        getViewModel(SearchFragmentVm::class.java)
     }
 
     override fun onCreateView(
@@ -48,8 +46,10 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
         super.onResume()
         initUi()
         observerData()
-        if(!viewModel.isSearchQueried)
-            viewModel.fetchUserList()
+        if(!searchViewModel.isSearchQueried){
+            searchViewModel.fetchUserList()
+            searchViewModel.firstOpen = true
+        }
     }
 
     fun initUi(){
@@ -76,12 +76,12 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
             }
             searchField.textChanges()?.debounce(400)?.onEach { s ->
                 if (s.isNullOrBlank()) {
-                    if(viewModel.isSearchQueried )
-                        viewModel.fetchUserList(); viewModel.isSearchQueried = false
+                    if(searchViewModel.isSearchQueried )
+                        searchViewModel.fetchUserList(); searchViewModel.isSearchQueried = false
                     return@onEach
                 }
-                viewModel.isSearchQueried = true
-                viewModel.fetchSearchResult(SearchUserRequest(
+                searchViewModel.isSearchQueried = true
+                searchViewModel.fetchSearchResult(SearchUserRequest(
                     s.toString()
                 ))
             }?.launchIn(lifecycleScope)
@@ -95,30 +95,31 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
                 cvLoading.setVisibility(true)
                 userRv.setVisibility(true)
             }
-            if(!isSearch)
-                items.forEach {
+            if(!isSearch && searchViewModel.firstOpen)
+                items.asReversed().forEach {
                     userListAdapter?.insertAtTop(it)
-                    delay(200)
+                    delay(50)
                     withBinding { userRv.smoothScrollToPosition(0) }
                 } else userListAdapter?.insertAll(items)
 
             withBinding { cvLoading.setVisibility(false) }
+            searchViewModel.firstOpen = false
         }
     }
 
     fun observerData(){
-        observeEvent(viewModel.githubUserLiveData){
+        observeEvent(searchViewModel.githubUserLiveData){
             when (it) {
                 is ResourceState.Success -> updateList(it.body)
                 is ResourceState.Failure -> {
-                    viewModel.fetchOfflineUserList()
+                    searchViewModel.fetchOfflineUserList()
                     snackBarHandler.showSnackBar("Oops, please check your internet connection")
                 }
                 else -> {}
             }
         }
 
-        observeEvent(viewModel.offlineGithubUserLiveData){
+        observeEvent(searchViewModel.offlineGithubUserLiveData){
             when (it) {
                 is ResourceState.Success -> {
                     if(it.body.isNotEmpty()) updateList(it.body)
@@ -132,7 +133,7 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
             }
         }
 
-        observeEvent(viewModel.updateOfflineUserLiveData){
+        observeEvent(searchViewModel.updateOfflineUserLiveData){
             when (it) {
                 is ResourceState.Failure -> {
                     withBinding { cvLoading.setVisibility(false) }
@@ -142,12 +143,12 @@ class SearchFragment : BaseFragment<SearchUserGithubFragmentBinding, SearchFragm
             }
         }
 
-        observeEvent(viewModel.searchResultLiveData){
+        observeEvent(searchViewModel.searchResultLiveData){
             when (it) {
                 is ResourceState.Success -> {
                     if(it.body.items.isNotEmpty())
                         updateList(it.body.items as List<GithubUserItemResponse>, isSearch = true) else {
-                        viewModel.fetchUserList()
+                        searchViewModel.fetchUserList()
                     }
                 }
                 is ResourceState.Failure -> {

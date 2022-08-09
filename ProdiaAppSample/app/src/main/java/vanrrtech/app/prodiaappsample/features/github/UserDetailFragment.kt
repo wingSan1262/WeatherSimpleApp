@@ -21,18 +21,16 @@ import vanrrtech.app.prodiaappsample.domain.data_model.github.response.GithubUse
 import vanrrtech.app.prodiaappsample.domain.data_model.github.response.UserDetails
 import vanrrtech.app.prodiaappsample.domain.data_model.github.response.UserRepoDetails
 
-class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFragmentVm>() {
+class UserDetailFragment : BaseFragment<UserDetailFragmentBinding>() {
 
-    override fun onResult(result: ActivityResult) {TODO("empty on result no implemented")}
     var repoAdapter : RepoAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         fragmentComponent.inject(this)
         super.onCreate(savedInstanceState)
-        getViewModel(UserDetailFragmentVm::class.java)
         (arguments?.getSerializable(PARAMETERS.USER_CLICKED_MODEL)
                 as? GithubUserItemResponse)?.let {
-                    viewModel.userClickedModel = it
+            userDetailViewModel.userClickedModel = it
         }
     }
 
@@ -49,7 +47,7 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFra
 
     override fun onResume() {
         super.onResume()
-        viewModel.onStart(viewLifecycleOwner)
+        userDetailViewModel.onStart(viewLifecycleOwner)
         fetchAllData()
         initUi()
         observerData()
@@ -60,7 +58,7 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFra
     }
 
     fun fetchAllData(){
-        viewModel.run{
+        userDetailViewModel.run{
             userClickedModel?.login?.let {
                 UserDetailRequest(it).run{
                     fetchRepoList(this)
@@ -109,7 +107,7 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFra
     }
 
     fun observerData(){
-        observeEvent(viewModel.userRepoLiveData){
+        observeEvent(userDetailViewModel.userRepoLiveData){
             when (it){
                 is ResourceState.Success ->
                     updateList(it.body)
@@ -118,7 +116,7 @@ class UserDetailFragment : BaseFragment<UserDetailFragmentBinding, UserDetailFra
                 else -> {} // do nothing
             }
         }
-        observeEvent(viewModel.userDetailLiveData){
+        observeEvent(userDetailViewModel.userDetailLiveData){
             when (it){
                 is ResourceState.Success -> {
                     updateUserDetails(it.body)
